@@ -1,6 +1,8 @@
-import random
-import array
-from pickle import BUILD
+import streamlit as st
+st.title('Deck Randomizer')
+col1, col2 = st.columns(2)
+balanced_deck = col1.button("Balanced Deck")
+random_deck = col2.button("Random Deck")
 
 cards = [
     # Spells
@@ -94,7 +96,7 @@ cards = [
 ]
 
 def randoms():
-  import random
+
 
   names = [card[0] for card in cards]
   ids = [card[1] for card in cards]
@@ -114,7 +116,7 @@ def randoms():
 
 
   link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
-  print(link)
+  st.write("link", link)
 
 
 #randomize proper dekcs now: 1 win con 2 spells 2 air counters 1 mini tank 1 tank killer 1 building
@@ -251,17 +253,30 @@ def deck():
 
   # deck link
   link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
-  print(link)
+  st.write("link", link)
 
 
 
-while 0 == 0:
-  l = input("select the type of deck (balanced (B) / fully random (F): ")
-  if l == "F":
-    randoms()
-  elif l == "B":
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if balanced_deck:
     deck()
+elif random_deck:
+    randoms()
 
-
-
-    # You can extend this further if need
