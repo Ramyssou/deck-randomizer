@@ -1,11 +1,14 @@
 import streamlit as st
+import sys
+
+sys.setrecursionlimit(10000)
 st.title('Deck Randomizer')
 col1, col2 = st.columns(2)
 balanced_deck = col1.button("Balanced Deck")
 random_deck = col2.button("Random Deck")
-# Converted from the JSON you provided.
-# Only entries that had an "elixirCost" in the source are included.
-# Omitted entries where elixirCost was not present in the JSON (e.g. Mirror id=28000006, supportItems 159000000+).
+elixir_cost = col2.number_input("elixir cost", min_value=1.3, max_value=7.3 , format="%.1f" , step=0.1)
+
+
 
 cards = [
     ("Knight", 26000000, 3),
@@ -155,17 +158,26 @@ def randoms():
   avg_elixir = round((elixir1 + elixir2 + elixir3 + elixir4 + elixir5 + elixir6 + elixir7 + elixir8) / 8, 1)
 
 
-  link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
-  st.write("link", link)
-  st.write(avg_elixir)
-  st.write(name1)
-  st.write(name2)
-  st.write(name3)
-  st.write(name4)
-  st.write(name5)
-  st.write(name6)
-  st.write(name7)
-  st.write(name8)
+  while avg_elixir != elixir_cost:
+      deck()
+      break
+  if avg_elixir == elixir_cost:
+      link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+      st.write("link", link)
+      st.write(avg_elixir)
+      st.write(name1)
+      st.write(name2)
+      st.write(name3)
+      st.write(name4)
+      st.write(name5)
+      st.write(name6)
+      st.write(name7)
+      st.write(name8)
+
+  if elixir_cost >= 5.5 or elixir_cost <= 2.4:
+      pass
+
+
 
 
 #randomize proper dekcs now: 1 win con 2 spells 2 air counters 1 mini tank 1 tank killer 1 building
@@ -329,14 +341,12 @@ spells = [
 
 
 def deck():
+    global elixir_cost
     import random
-
-
     build_names = [b[0] for b in buildings]
     build_ids = [b[1] for b in buildings]
     build_elixirs = [b[2] for b in buildings]
     name1, id1, elixir1 = random.choice(list(zip(build_names, build_ids, build_elixirs)))
-
 
     spell_names = [s[0] for s in spells]
     spell_ids = [s[1] for s in spells]
@@ -345,14 +355,12 @@ def deck():
         list(zip(spell_names, spell_ids, spell_elixirs)), 2
     )
 
-
     troop_names = [t[0] for t in troops]
     troop_ids = [t[1] for t in troops]
     troop_elixirs = [t[2] for t in troops]
     (name4, id4, elixir4), (name5, id5, elixir5), (name6, id6, elixir6), (name7, id7, elixir7) = random.sample(
         list(zip(troop_names, troop_ids, troop_elixirs)), 4
     )
-
 
     wincon_names = [wc[0] for wc in winConditions]
     wincon_ids = [wc[1] for wc in winConditions]
@@ -361,41 +369,21 @@ def deck():
         list(zip(wincon_names, wincon_ids, wincon_elixirs))
     )
 
-    avg_elixir = round((elixir1 + elixir2 + elixir3 + elixir4 + elixir5 + elixir6 + elixir7 + elixir8 ) / 8, 1)
-
-
-
-
-
-  # deck link
-    link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
-    st.write("link", link)
-    st.write(avg_elixir)
-    st.write(name1)
-    st.write(name2)
-    st.write(name3)
-    st.write(name4)
-    st.write(name5)
-    st.write(name6)
-    st.write(name7)
-    st.write(name8)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    avg_elixir = round((elixir1 + elixir2 + elixir3 + elixir4 + elixir5 + elixir6 + elixir7 + elixir8) / 8, 1)
+    if avg_elixir == elixir_cost:
+        link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+        st.write("link", link)
+        st.write(avg_elixir)
+        st.write(name1)
+        st.write(name2)
+        st.write(name3)
+        st.write(name4)
+        st.write(name5)
+        st.write(name6)
+        st.write(name7)
+        st.write(name8)
+    else:
+        deck()
 
 
 
@@ -404,4 +392,5 @@ if balanced_deck:
     deck()
 elif random_deck:
     randoms()
+
 
