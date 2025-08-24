@@ -3,97 +3,105 @@ st.title('Deck Randomizer')
 col1, col2 = st.columns(2)
 balanced_deck = col1.button("Balanced Deck")
 random_deck = col2.button("Random Deck")
-
 cards = [
-    # Spells
-    ("Zap", 26000038, "Spell"),
-    ("Arrows", 26000001, "Spell"),
-    ("Giant Snowball", 28000012, "Spell"),
-    ("Royal Delivery", 28000017, "Spell"),
-    ("Fireball", 28000000, "Spell"),
-    ("Rocket", 28000003, "Spell"),
-    ("Poison", 28000009, "Spell"),
-    ("Lightning", 28000007, "Spell"),
-    ("Freeze", 28000005, "Spell"),
-    ("Clone", 28000011, "Spell"),
-    ("Rage", 28000002, "Spell"),
-    ("Earthquake", 28000015, "Spell"),
-    ("Tornado", 28000010, "Spell"),
-    ("Mirror", 28000001, "Spell"),
-    ("Barbarian Barrel", 28000016, "Spell"),
+    # 1 Elixir
+    ("Skeletons", 26000010, 1),
+    ("Ice Spirit", 26000030, 1),
+    ("Fire Spirit", 26000031, 1),
+    ("Heal Spirit", 26000051, 1),
+    ("Electro Spirit", 26000064, 1),
 
-    # Buildings
-    ("Cannon", 27000000, "Building"),
-    ("Tesla", 27000006, "Building"),
-    ("Mortar", 27000002, "Building"),
-    ("Bomb Tower", 27000004, "Building"),
-    ("Furnace", 27000010, "Building"),
-    ("Goblin Cage", 27000012, "Building"),
-    ("Goblin Hut", 27000001, "Building"),
-    ("Barbarian Hut", 27000003, "Building"),
-    ("Elixir Collector", 27000007, "Building"),
-    ("X-Bow", 27000008, "Building"),
-    ("Inferno Tower", 27000005, "Building"),
-    ("Tombstone", 27000009, "Building"),
+    # 2 Elixir
+    ("Spear Goblins", 26000002, 2),
+    ("Bomber", 26000013, 2),
+    ("Bats", 26000049, 2),
+    ("Giant Snowball", 28000012, 2),
+    ("Rage", 28000002, 2),
+    ("Barbarian Barrel", 28000016, 2),
+    ("Zap", 26000038, 2),
+    ("Mirror", 28000001, 2),  # dynamic cost = last card +1
 
-    # Win Conditions
-    ("Hog Rider", 26000021, "Win Condition"),
-    ("Royal Giant", 26000024, "Win Condition"),
-    ("Elite Barbarians", 26000028, "Win Condition"),
-    ("Giant", 26000003, "Win Condition"),
-    ("Battle Ram", 26000036, "Win Condition"),
-    ("Balloon", 26000006, "Win Condition"),
-    ("Goblin Drill", 27000013, "Win Condition"),
-    ("Goblin Giant", 26000052, "Win Condition"),
-    ("Golem", 26000009, "Win Condition"),
-    ("Lava Hound", 26000029, "Win Condition"),
-    ("Royal Hogs", 26000059, "Win Condition"),
-    ("Ram Rider", 26000050, "Win Condition"),
-    ("Miner", 26000032, "Win Condition"),
-    ("Graveyard", 28000008, "Win Condition"),
-    ("Sparky", 26000033, "Win Condition"),
-    ("Electro Giant", 26000063, "Win Condition"),
-    ("P.E.K.K.A", 26000004, "Win Condition"),
+    # 3 Elixir
+    ("Archers", 26000001, 3),
+    ("Knight", 26000000, 3),
+    ("Minions", 26000005, 3),
+    ("Firecracker", 28000002, 3),
+    ("Dart Goblin", 26000040, 3),
+    ("Arrows", 26000001, 3),
+    ("Royal Delivery", 28000017, 3),
+    ("Earthquake", 28000015, 3),
+    ("Tornado", 28000010, 3),
+    ("Clone", 28000011, 3),
+    ("Cannon", 27000000, 3),
+    ("Tombstone", 27000009, 3),
+    ("Mega Minion", 26000035, 3),
+    ("Miner", 26000032, 3),
 
-    # Troops
-    ("Skeletons", 26000010, "Troop"),
-    ("Archers", 26000001, "Troop"),
-    ("Knight", 26000000, "Troop"),
-    ("Bomber", 26000013, "Troop"),
-    ("Bats", 26000049, "Troop"),
-    ("Minions", 26000005, "Troop"),
-    ("Spear Goblins", 26000002, "Troop"),
-    ("Musketeer", 26000014, "Troop"),
-    ("Mini P.E.K.K.A", 26000018, "Troop"),
-    ("Baby Dragon", 26000015, "Troop"),
-    ("Valkyrie", 26000011, "Troop"),
-    ("Wizard", 26000012, "Troop"),
-    ("Dark Prince", 26000027, "Troop"),
-    ("Prince", 26000022, "Troop"),
-    ("Skeleton Army", 26000009, "Troop"),
-    ("Inferno Dragon", 26000040, "Troop"),
-    ("Electro Dragon", 26000060, "Troop"),
-    ("Bowler", 26000034, "Troop"),
-    ("Executioner", 26000045, "Troop"),
-    ("Giant Skeleton", 26000020, "Troop"),
-    ("Cannon Cart", 26000054, "Troop"),
-    ("Mega Minion", 26000035, "Troop"),
-    ("Night Witch", 26000047, "Troop"),
-    ("Firecracker", 28000002, "Troop"),
-    ("Rascals", 28000006, "Troop"),
-    ("Dart Goblin", 26000040, "Troop"),
-    ("Battle Healer", 26000058, "Troop"),
-
-    # Champions
-    ("Skeleton King", 26000084, "Champion"),
-    ("Golden Knight", 26000085, "Champion"),
-    ("Archer Queen", 26000086, "Champion"),
-    ("Mighty Miner", 26000088, "Champion"),
-    ("Monk", 26000092, "Champion"),
-    ("Little Prince", 26000096, "Champion"),
+    # 4 Elixir
+    ("Musketeer", 26000014, 4),
+    ("Mini P.E.K.K.A", 26000018, 4),
+    ("Baby Dragon", 26000015, 4),
+    ("Valkyrie", 26000011, 4),
+    ("Dark Prince", 26000027, 4),
+    ("Inferno Dragon", 26000040, 4),
+    ("Night Witch", 26000047, 4),
+    ("Battle Healer", 26000058, 4),
+    ("Hog Rider", 26000021, 4),
+    ("Battle Ram", 26000036, 4),
+    ("Goblin Drill", 27000013, 4),
+    ("Tesla", 27000006, 4),
+    ("Bomb Tower", 27000004, 4),
+    ("Goblin Cage", 27000012, 4),
+    ("Furnace", 27000010, 4),
+    ("Fireball", 28000000, 4),
+    ("Poison", 28000009, 4),
+    ("Freeze", 28000005, 4),
+    ("Skeleton King", 26000084, 4),
+    ("Golden Knight", 26000085, 4),
+    ("Mighty Miner", 26000088, 4),
+    ("Little Prince", 26000096, 4),
 
 
+    # 5 Elixir
+    ("Wizard", 26000012, 5),
+    ("Prince", 26000022, 5),
+    ("Electro Dragon", 26000060, 5),
+    ("Bowler", 26000034, 5),
+    ("Executioner", 26000045, 5),
+    ("Cannon Cart", 26000054, 5),
+    ("Rascals", 28000006, 5),
+    ("Giant", 26000003, 5),
+    ("Ram Rider", 26000050, 5),
+    ("Royal Hogs", 26000059, 5),
+    ("Graveyard", 28000008, 5),
+    ("Inferno Tower", 27000005, 5),
+    ("Goblin Hut", 27000001, 5),
+    ("Archer Queen", 26000086, 5),
+    ("Monk", 26000092, 5),
+
+
+    # 6 Elixir
+    ("Giant Skeleton", 26000020, 6),
+    ("Elite Barbarians", 26000028, 6),
+    ("Royal Giant", 26000024, 6),
+    ("Goblin Giant", 26000052, 6),
+    ("Sparky", 26000033, 6),
+    ("Rocket", 28000003, 6),
+    ("Lightning", 28000007, 6),
+    ("Mortar", 27000002, 6),
+    ("X-Bow", 27000008, 6),
+    ("Elixir Collector", 27000007, 6),
+
+    # 7 Elixir
+    ("Lava Hound", 26000029, 7),
+    ("P.E.K.K.A", 26000004, 7),
+    ("Barbarian Hut", 27000003, 7),
+
+    # 8 Elixir
+    ("Golem", 26000009, 8),
+    ("Electro Giant", 26000063, 8),
 ]
+
 
 def randoms():
 
@@ -122,109 +130,109 @@ def randoms():
 #randomize proper dekcs now: 1 win con 2 spells 2 air counters 1 mini tank 1 tank killer 1 building
 
 # Spells
+# Spells
 spells = [
-    ("Zap", 26000038),
-    ("Arrows", 26000001),
-    ("Giant Snowball", 28000012),
-    ("Royal Delivery", 28000017),
-    ("Fireball", 28000000),
-    ("Rocket", 28000003),
-    ("Poison", 28000009),
-    ("Lightning", 28000007),
-    ("Freeze", 28000005),
-    ("Clone", 28000011),
-    ("Rage", 28000002),
-    ("Earthquake", 28000015),
-    ("Tornado", 28000010),
-    ("Mirror", 28000001),
-    ("Barbarian Barrel", 28000016)
+    ("Zap", 26000038, 2),
+    ("Mirror", 28000001, 0),
+    ("Arrows", 26000001, 3),
+    ("Giant Snowball", 28000012, 2),
+    ("Rage", 28000002, 2),
+    ("Barbarian Barrel", 28000016, 2),
+    ("Royal Delivery", 28000017, 3),
+    ("Fireball", 28000000, 4),
+    ("Poison", 28000009, 4),
+    ("Earthquake", 28000015, 3),
+    ("Freeze", 28000005, 4),
+    ("Lightning", 28000007, 6),
+    ("Rocket", 28000003, 6),
+    ("Tornado", 28000010, 3),
+    ("Clone", 28000011, 3),
 ]
 
 # Buildings
 buildings = [
-    ("Cannon", 27000000),
-    ("Tesla", 27000006),
-    ("Mortar", 27000002),
-    ("Bomb Tower", 27000004),
-    ("Furnace", 27000010),
-    ("Goblin Cage", 27000012),
-    ("Goblin Hut", 27000001),
-    ("Barbarian Hut", 27000003),
-    ("Elixir Collector", 27000007),
-    ("X-Bow", 27000008),
-    ("Inferno Tower", 27000005),
-    ("Tombstone", 27000009)
+    ("Cannon", 27000000, 3),
+    ("Tombstone", 27000009, 3),
+    ("Tesla", 27000006, 4),
+    ("Bomb Tower", 27000004, 4),
+    ("Goblin Cage", 27000012, 4),
+    ("Furnace", 27000010, 4),
+    ("Goblin Hut", 27000001, 5),
+    ("Barbarian Hut", 27000003, 7),
+    ("Mortar", 27000002, 4),
+    ("X-Bow", 27000008, 6),
+    ("Inferno Tower", 27000005, 5),
+    ("Elixir Collector", 27000007, 6),
 ]
 
 # Win Conditions
 winConditions = [
-    ("Hog Rider", 26000021),
-    ("Royal Giant", 26000024),
-    ("Elite Barbarians", 26000028),
-    ("Giant", 26000003),
-    ("Battle Ram", 26000036),
-    ("Balloon", 26000006),
-    ("Goblin Drill", 27000013),
-    ("Goblin Giant", 26000052),
-    ("Golem", 26000009),
-    ("Lava Hound", 26000029),
-    ("Royal Hogs", 26000059),
-    ("Ram Rider", 26000050),
-    ("Miner", 26000032),
-    ("Graveyard", 28000008),
-    ("Sparky", 26000033),
-    ("Electro Giant", 26000063),
-    ("P.E.K.K.A", 26000004)
+    ("Hog Rider", 26000021, 4),
+    ("Miner", 26000032, 3),
+    ("Elite Barbarians", 26000028, 6),
+    ("Royal Giant", 26000024, 6),
+    ("Giant", 26000003, 5),
+    ("Battle Ram", 26000036, 4),
+    ("Balloon", 26000006, 5),
+    ("Goblin Drill", 27000013, 4),
+    ("Goblin Giant", 26000052, 6),
+    ("Ram Rider", 26000050, 5),
+    ("Royal Hogs", 26000059, 5),
+    ("Graveyard", 28000008, 5),
+    ("Lava Hound", 26000029, 7),
+    ("Golem", 26000009, 8),
+    ("Sparky", 26000033, 6),
+    ("Electro Giant", 26000063, 8),
+    ("P.E.K.K.A", 26000004, 7),
 ]
 
 # Troops
 troops = [
-    ("Skeletons", 26000010),
-    ("Archers", 26000001),
-    ("Knight", 26000000),
-    ("Bomber", 26000013),
-    ("Bats", 26000049),
-    ("Minions", 26000005),
-    ("Spear Goblins", 26000002),
-    ("Musketeer", 26000014),
-    ("Mini P.E.K.K.A", 26000018),
-    ("Baby Dragon", 26000015),
-    ("Valkyrie", 26000011),
-    ("Wizard", 26000012),
-    ("Dark Prince", 26000027),
-    ("Prince", 26000022),
-    ("Skeleton Army", 26000009),
-    ("Inferno Dragon", 26000040),
-    ("Electro Dragon", 26000060),
-    ("Bowler", 26000034),
-    ("Executioner", 26000045),
-    ("Giant Skeleton", 26000020),
-    ("Cannon Cart", 26000054),
-    ("Mega Minion", 26000035),
-    ("Night Witch", 26000047),
-    ("Firecracker", 28000002),
-    ("Rascals", 28000006),
-    ("Dart Goblin", 26000040),
-    ("Battle Healer", 26000058)
+    ("Skeletons", 26000010, 1),
+    ("Ice Spirit", 26000030, 1),
+    ("Fire Spirit", 26000031, 1),
+    ("Heal Spirit", 26000051, 1),
+    ("Electro Spirit", 26000064, 1),
+    ("Spear Goblins", 26000002, 2),
+    ("Archers", 26000001, 3),
+    ("Knight", 26000000, 3),
+    ("Bomber", 26000013, 2),
+    ("Bats", 26000049, 2),
+    ("Minions", 26000005, 3),
+    ("Musketeer", 26000014, 4),
+    ("Mini P.E.K.K.A", 26000018, 4),
+    ("Baby Dragon", 26000015, 4),
+    ("Valkyrie", 26000011, 4),
+    ("Wizard", 26000012, 5),
+    ("Dark Prince", 26000027, 4),
+    ("Prince", 26000022, 5),
+    ("Skeleton Army", 26000009, 3),
+    ("Inferno Dragon", 26000040, 4),
+    ("Electro Dragon", 26000060, 5),
+    ("Bowler", 26000034, 5),
+    ("Executioner", 26000045, 5),
+    ("Giant Skeleton", 26000020, 6),
+    ("Cannon Cart", 26000054, 5),
+    ("Mega Minion", 26000035, 3),
+    ("Night Witch", 26000047, 4),
+    ("Firecracker", 28000002, 3),
+    ("Rascals", 28000006, 5),
+    ("Dart Goblin", 26000040, 3),
+    ("Battle Healer", 26000058, 4),
 ]
 
 # Champions
 champions = [
-    ("Skeleton King", 26000084),
-    ("Golden Knight", 26000085),
-    ("Archer Queen", 26000086),
-    ("Mighty Miner", 26000088),
-    ("Monk", 26000092),
-    ("Little Prince", 26000096)
+    ("Skeleton King", 26000084, 4),
+    ("Golden Knight", 26000085, 4),
+    ("Archer Queen", 26000086, 5),
+    ("Mighty Miner", 26000088, 4),
+    ("Monk", 26000092, 5),
+    ("Little Prince", 26000096, 4),
 ]
 
-# Tower Troops (IDs not public yet, so None)
-tower_troops = [
-    ("Tower Princess", None),
-    ("Cannoneer", None),
-    ("Dagger Duchess", None),
-    ("Royal Chef", None)
-]
+
+
 
 
 import random
@@ -248,6 +256,7 @@ def deck():
   wincon_names = [wc[0] for wc in winConditions]
   wincon_ids = [wc[1] for wc in winConditions]
   name8, id8 = random.choice(list(zip(wincon_names, wincon_ids)))
+
 
 
 
