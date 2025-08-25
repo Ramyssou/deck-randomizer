@@ -6,7 +6,11 @@ st.title('Deck Randomizer')
 col1, col2 = st.columns(2)
 balanced_deck = col1.button("Balanced Deck")
 random_deck = col2.button("Random Deck")
-elixir_cost = col2.number_input("elixir cost", min_value=1.3, max_value=7.3 , format="%.1f" , step=0.1)
+chose_elixir = col2.checkbox("Chose Elixir cost")
+if chose_elixir:
+    elixir_cost = col2.number_input("elixir cost", min_value=1.3, max_value=7.3 , format="%.1f" , step=0.1)
+else:
+    elixir_cost = False
 
 
 
@@ -156,12 +160,23 @@ def randoms():
   name8, id8, elixir8 = names[chosen[7]], ids[chosen[7]], elixir[chosen[7]]
 
   avg_elixir = round((elixir1 + elixir2 + elixir3 + elixir4 + elixir5 + elixir6 + elixir7 + elixir8) / 8, 1)
-
-
-  while avg_elixir != elixir_cost:
-      deck()
-      break
-  if avg_elixir == elixir_cost:
+  if chose_elixir:
+      while avg_elixir != elixir_cost:
+          deck()
+          break
+      if avg_elixir == elixir_cost:
+          link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+          st.write("link", link)
+          st.write(avg_elixir)
+          st.write(name1)
+          st.write(name2)
+          st.write(name3)
+          st.write(name4)
+          st.write(name5)
+          st.write(name6)
+          st.write(name7)
+          st.write(name8)
+  elif elixir_cost == False:
       link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
       st.write("link", link)
       st.write(avg_elixir)
@@ -174,8 +189,6 @@ def randoms():
       st.write(name7)
       st.write(name8)
 
-  if elixir_cost >= 5.5 or elixir_cost <= 2.4:
-      pass
 
 
 
@@ -370,7 +383,23 @@ def deck():
     )
 
     avg_elixir = round((elixir1 + elixir2 + elixir3 + elixir4 + elixir5 + elixir6 + elixir7 + elixir8) / 8, 1)
-    if avg_elixir == elixir_cost:
+    if chose_elixir:
+        while avg_elixir != elixir_cost:
+            deck()
+            break
+        if avg_elixir == elixir_cost:
+            link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+            st.write("link", link)
+            st.write(avg_elixir)
+            st.write(name1)
+            st.write(name2)
+            st.write(name3)
+            st.write(name4)
+            st.write(name5)
+            st.write(name6)
+            st.write(name7)
+            st.write(name8)
+    elif elixir_cost == False:
         link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
         st.write("link", link)
         st.write(avg_elixir)
@@ -382,8 +411,6 @@ def deck():
         st.write(name6)
         st.write(name7)
         st.write(name8)
-    else:
-        deck()
 
 
 
