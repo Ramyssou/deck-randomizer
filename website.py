@@ -1,7 +1,9 @@
 import streamlit as st
 import sys
 from decimal import Decimal, ROUND_HALF_UP
-sys.setrecursionlimit(15000)
+sys.setrecursionlimit(10000)
+from streamlit_autorefresh import st_autorefresh
+
 st.title('Deck Randomizer')
 col1, col2 = st.columns(2)
 balanced_deck = col1.button("Balanced Deck")
@@ -11,9 +13,15 @@ chose_elixir = col2.checkbox("Chose Elixir cost")
 
 
 if chose_elixir:
-    elixir_cost = col2.number_input("elixir cost", min_value=1.3, max_value=7.3 , format="%.1f" , step=0.1, value=4.0)
+    elixir_cost = col2.number_input("elixir cost", min_value=1.3, max_value=7.3 , format="%.1f" , step=1.0, value=4.0)
     if (elixir_cost * 10) % 10 == 7:
-        elixir_cost += 0.1
+        st.error("there is no deck, please chose another cost")
+        balanced_deck = False
+        random_deck = False
+
+
+
+
 
 else:
     elixir_cost = False
@@ -526,7 +534,12 @@ def deck():
         list(zip(wincon_names, wincon_ids, wincon_elixirs))
     )
 
-    avg_elixir = round((elixir1 + elixir2 + elixir3 + elixir4 + elixir5 + elixir6 + elixir7 + elixir8) / 8, 1)
+    g = (elixir1 + elixir2 + elixir3 + elixir4 + elixir5 + elixir6 + elixir7 + elixir8) / 8
+
+    if (g * 100) % 10 == 5:
+        avg_elixir = g + 0.05
+    else:
+        avg_elixir = round(g, 1)
     if chose_elixir:
         while avg_elixir != elixir_cost:
             deck()
@@ -557,11 +570,17 @@ def deck():
         st.write(name8)
 
 
-if balanced_deck:
+if elixir_cost > 5.5 or elixir_cost < 2.3:
+    if balanced_deck:
+        st.write("no balanced decks")
+if balanced_deck and elixir_cost == False:
+    deck()
+if balanced_deck and 2.4 <= elixir_cost <= 5.4:
     deck()
 if random_deck:
     if elixir_cost == False:
         randoms()
+
     else:
         if 6.4> elixir_cost >= 5.5:
             big_deck()
@@ -571,7 +590,6 @@ if random_deck:
             small_deck()
     if 2.5 <= elixir_cost <5.5:
         randoms()
-
 
 
 
