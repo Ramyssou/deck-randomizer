@@ -1,8 +1,7 @@
 import streamlit as st
 import sys
-from decimal import Decimal, ROUND_HALF_UP
-sys.setrecursionlimit(10000)
-from streamlit_autorefresh import st_autorefresh
+sys.setrecursionlimit(5000)
+
 
 st.title('Deck Randomizer')
 col1, col2 = st.columns(2)
@@ -13,8 +12,8 @@ chose_elixir = col2.checkbox("Chose Elixir cost")
 
 
 if chose_elixir:
-    elixir_cost = col2.number_input("elixir cost", min_value=1.3, max_value=7.3 , format="%.1f" , step=1.0, value=4.0)
-    if (elixir_cost * 10) % 10 == 7:
+    elixir_cost = col2.number_input("elixir cost", min_value=1.6 , max_value=7.3 , format="%.1f" , step=1.0, value=4.0)
+    if (elixir_cost * 10) % 10 == 7 or (elixir_cost * 10) % 10 == 2 :
         st.error("there is no deck, please chose another cost")
         balanced_deck = False
         random_deck = False
@@ -237,6 +236,47 @@ def bigger_deck():
         st.write(name6)
         st.write(name7)
         st.write(name8)
+def massive_deck():
+    massive_cards = cards[95:]
+    names = [card[0] for card in massive_cards]
+    ids = [card[1] for card in massive_cards]
+    elixir = [card[2] for card in massive_cards]
+
+    # pick 8 unique random indices
+    chosen = random.sample(range(len(massive_cards)), 8)
+
+    # unpack them into names and ids
+    name1, id1, elixir1 = names[chosen[0]], ids[chosen[0]], elixir[chosen[0]]
+    name2, id2, elixir2 = names[chosen[1]], ids[chosen[1]], elixir[chosen[1]]
+    name3, id3, elixir3 = names[chosen[2]], ids[chosen[2]], elixir[chosen[2]]
+    name4, id4, elixir4 = names[chosen[3]], ids[chosen[3]], elixir[chosen[3]]
+    name5, id5, elixir5 = names[chosen[4]], ids[chosen[4]], elixir[chosen[4]]
+    name6, id6, elixir6 = names[chosen[5]], ids[chosen[5]], elixir[chosen[5]]
+    name7, id7, elixir7 = names[chosen[6]], ids[chosen[6]], elixir[chosen[6]]
+    name8, id8, elixir8 = names[chosen[7]], ids[chosen[7]], elixir[chosen[7]]
+
+    g = (elixir1 + elixir2 + elixir3 + elixir4 + elixir5 + elixir6 + elixir7 + elixir8) / 8
+    if (g * 100) % 10 == 5:
+        avg_elixir = g + 0.05
+    else:
+        avg_elixir = round(g, 1)
+
+    while avg_elixir != elixir_cost:
+        massive_deck()
+        break
+    if avg_elixir == elixir_cost:
+        link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+        st.write("link", link)
+        st.write(avg_elixir)
+        st.write(name1)
+        st.write(name2)
+        st.write(name3)
+        st.write(name4)
+        st.write(name5)
+        st.write(name6)
+        st.write(name7)
+        st.write(name8)
+
 
 def small_deck():
     small_cards = cards[:-75]
@@ -570,26 +610,26 @@ def deck():
         st.write(name8)
 
 
-if elixir_cost > 5.5 or elixir_cost < 2.3:
-    if balanced_deck:
-        st.write("no balanced decks")
-if balanced_deck and elixir_cost == False:
-    deck()
-if balanced_deck and 2.4 <= elixir_cost <= 5.4:
-    deck()
 if random_deck:
     if elixir_cost == False:
         randoms()
-
     else:
-        if 6.4> elixir_cost >= 5.5:
+        if 6.2 >= elixir_cost >= 5.5:
             big_deck()
-        elif elixir_cost >= 6.4:
+        elif elixir_cost >= 7.0:
+            massive_deck()
+        elif 7.0 >= elixir_cost >= 6.3:
             bigger_deck()
-        elif elixir_cost <= 2.4:
+        if elixir_cost <= 2.4:
             small_deck()
-    if 2.5 <= elixir_cost <5.5:
-        randoms()
+        elif 2.4 < elixir_cost <= 5.4:
+            randoms()
 
-
-
+if balanced_deck:
+    if elixir_cost == False:
+        deck()
+    else:
+        if 2.4 <= elixir_cost <= 5.4:
+            deck()
+        else:
+            st.write("no balanced deck available")
