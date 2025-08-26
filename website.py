@@ -183,7 +183,7 @@ def big_deck():
         big_deck()
         break
     if avg_elixir == elixir_cost:
-        link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+        link = f"https://link.clashroyale.com/en?clashroyale://copyDeck?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&slots=0;0;0;0;0;0;0;0&id=123456&tt=159000000&l=Royals&ev=113424"
         st.write("link", link)
         st.write(avg_elixir)
         st.write(name1)
@@ -225,7 +225,7 @@ def bigger_deck():
         bigger_deck()
         break
     if avg_elixir == elixir_cost:
-        link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+        link = f"https://link.clashroyale.com/en?clashroyale://copyDeck?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&slots=0;0;0;0;0;0;0;0&id=123456&tt=159000000&l=Royals&ev=113424"
         st.write("link", link)
         st.write(avg_elixir)
         st.write(name1)
@@ -265,7 +265,7 @@ def massive_deck():
         massive_deck()
         break
     if avg_elixir == elixir_cost:
-        link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+        link = f"https://link.clashroyale.com/en?clashroyale://copyDeck?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&slots=0;0;0;0;0;0;0;0&id=123456&tt=159000000&l=Royals&ev=113424"
         st.write("link", link)
         st.write(avg_elixir)
         st.write(name1)
@@ -308,7 +308,7 @@ def small_deck():
         small_deck()
         break
     if avg_elixir == elixir_cost:
-        link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+        link = f"https://link.clashroyale.com/en?clashroyale://copyDeck?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&slots=0;0;0;0;0;0;0;0&id=123456&tt=159000000&l=Royals&ev=113424"
         st.write("link", link)
         st.write(avg_elixir)
         st.write(name1)
@@ -354,7 +354,7 @@ def randoms():
           deck()
           break
       if avg_elixir == elixir_cost:
-          link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+          link = f"https://link.clashroyale.com/en?clashroyale://copyDeck?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&slots=0;0;0;0;0;0;0;0&id=123456&tt=159000000&l=Royals&ev=113424"
           st.write("link", link)
           st.write(avg_elixir)
 
@@ -366,9 +366,8 @@ def randoms():
           st.write(name6)
           st.write(name7)
           st.write(name8)
-          st.write(g)
   elif elixir_cost == False:
-      link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+      link = f"https://link.clashroyale.com/en?clashroyale://copyDeck?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&slots=0;0;0;0;0;0;0;0&id=123456&tt=159000000&l=Royals&ev=113424"
       st.write("link", link)
       st.write(avg_elixir)
       st.write(name1)
@@ -585,7 +584,7 @@ def deck():
             deck()
             break
         if avg_elixir == elixir_cost:
-            link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+            link = f"https://link.clashroyale.com/en?clashroyale://copyDeck?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&slots=0;0;0;0;0;0;0;0&id=123456&tt=159000000&l=Royals&ev=113424"
             st.write("link", link)
             st.write(avg_elixir)
             st.write(name1)
@@ -597,7 +596,7 @@ def deck():
             st.write(name7)
             st.write(name8)
     elif elixir_cost == False:
-        link = f"https://link.clashroyale.com/deck/en?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&l=Royals&slots=0;0;0;0;0;0;0;0&tt=159000000"
+        link = f"https://link.clashroyale.com/en?clashroyale://copyDeck?deck={id1};{id2};{id3};{id4};{id5};{id6};{id7};{id8}&slots=0;0;0;0;0;0;0;0&id=123456&tt=159000000&l=Royals&ev=113424"
         st.write("link", link)
         st.write(avg_elixir)
         st.write(name1)
