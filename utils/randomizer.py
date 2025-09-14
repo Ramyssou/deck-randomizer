@@ -31,10 +31,10 @@ def randomizer():
     deck = [card1, card2, card3, card4, card5, card6, card7, card8]
     for i in range(len(deck)):
         for j in range(i + 1, len(deck)):
-            if deck[i]["rarity"] == deck[j]["rarity"] and not "champion":
-                randomizer()
-            else:
-                continue
+            if deck[i]["rarity"] == deck[j]["rarity"] == "champion":
+                st.error("sorry , there are 2 champions , reroll.")
+                break
+
 
     return deck
 
